@@ -1,8 +1,11 @@
 const { Router } = require('express');
-const { TodoController } = require();
+const { todoController } = require('./../controllers');
 
 const todoRouter = Router();
 
-todoRouter.get('/', todoController.getTodos);
+todoRouter
+  .route('/')
+  .get(todoController.getTodos)
+  .post(todoController.createTodo);
 
 module.exports = todoRouter;
