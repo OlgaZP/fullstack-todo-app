@@ -1,0 +1,29 @@
+{
+  "name": "server",
+  "version": "0.0.0",
+  "description": "ToDo Fullstack App",
+  "keywords": [
+    "todo",
+    "fullstack",
+    "react"
+  ],
+  "author": "Olga K <oskozlova@gmail.com>",
+  "homepage": "",
+  "license": "ISC",
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1",
+    "dev": "nodemon ./server.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "lodash": "^4.17.21",
+    "pg": "^8.7.1",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.8.0",
+    "yup": "^0.32.11"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.14",
+    "sequelize-cli": "^6.2.0"
+  }
+}
