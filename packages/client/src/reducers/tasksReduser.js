@@ -73,7 +73,6 @@ function tasksReduser (state = initialState, action) {
       const { updatedTask } = action;
       const { tasks } = state;
       console.log(`updatedTask from UPDATE_TASK_SUCCESS reducer`, updatedTask);
-      // const newTasks = [...tasks, task];
       const index = tasks.findIndex(t => t.id === updatedTask.id);
       tasks[index] = { ...tasks[index], ...updatedTask };
       console.log(`tasks from reducer`, tasks);

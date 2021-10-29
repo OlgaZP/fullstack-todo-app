@@ -47,7 +47,9 @@ export function * updateTaskSaga (action) {
   console.log(`into update task saga`);
   yield put(updateTaskRequest());
   try {
-    const { data: updatedTask } = yield API.updateTask(id, taskForUpdate);
+    const {
+      data: { data: updatedTask },
+    } = yield API.updateTask(id, taskForUpdate);
     console.log(`updatedTask from saga`, updatedTask);
     yield put(updateTaskSuccess(updatedTask));
   } catch (err) {

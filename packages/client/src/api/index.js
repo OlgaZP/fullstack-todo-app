@@ -10,6 +10,6 @@ export const getTasks = () => apiInstance.get('/todo');
 
 export const createTask = task => apiInstance.post('/todo', task);
 
-export const updateTask = task => apiInstance.patch('/todo', task);
+export const updateTask = (id, task) => apiInstance.patch(`/todo/${id}`, task);
 
 export const deleteTask = id => apiInstance.delete(`/todo/${id}`);

@@ -60,6 +60,28 @@ module.exports.deleteTodo = async (req, res, next) => {
   }
 };
 
-module.exports.updateTodo = (req, res, mext) => {
+module.exports.updateTodo = async (req, res, next) => {
   console.log(`into update todo controller`);
+  const {
+    params: { todoId },
+    body,
+  } = req;
+
+  try {
+    const [updatedCount, [updatedTodo]] = await Todo.update(body, {
+      where: { id: todoId },
+      returning: true,
+    });
+
+    if (updatedCount > 0) {
+      const preparedTodo = _.omit(updatedTodo.get(), [
+        'createdAt',
+        'updatedAt',
+      ]);
+      return res.status(201).send({ data: preparedTodo });
+    }
+    next();
+  } catch (err) {
+    next(err);
+  }
 };
