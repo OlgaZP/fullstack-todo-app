@@ -8,4 +8,9 @@ todoRouter
   .get(todoController.getTodos)
   .post(todoController.createTodo);
 
+todoRouter
+  .route('/:todoId')
+  .patch(todoController.updateTodo)
+  .delete(todoController.deleteTodo);
+
 module.exports = todoRouter;

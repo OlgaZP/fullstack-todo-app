@@ -5,7 +5,11 @@ POST http://localhost:5000/api/todo HTTP/1.1
 Content-Type: application/json
 
 {
-    "title":"Relax test",
-    "description":"Testing description of todo incorrect date",
-    "date": "2021-10-27"
+    "title":"High priority todo",
+    "description":"Testing description of todo",
+    "date": "2021-11-02",
+    "priority": "high"
 }
+
+###
+DELETE  http://localhost:5000/api/todo/c3185992-98db-4ac0-a41a-dd57cd84a331 HTTP/1.1

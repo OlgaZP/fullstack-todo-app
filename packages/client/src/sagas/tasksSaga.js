@@ -60,9 +60,7 @@ export function * deleteTaskSaga (action) {
   console.log(`into deleteTaskSaga id=`, id);
   yield put(deleteTaskRequest());
   try {
-    const {
-      data: [deletedTask],
-    } = yield API.deleteTask(id);
+    const { data: deletedTask } = yield API.deleteTask(id);
     console.log(`deletedTask from delete saga`, deletedTask);
     yield put(deleteTaskSuccess(deletedTask));
   } catch (err) {

@@ -16,7 +16,7 @@ function ToDoList (props) {
 
   const cs = classNames.bind(styles);
 
-  console.log('tasks from ToDoListCOmponent:>> ', tasks);
+  console.log('tasks from ToDoListComponent:>> ', tasks);
   const mapTask = ({ id, title, date, description, isDone, priority }) => {
     const deleteHandler = () => {
       console.log('id from delete handler :>> ', id);
