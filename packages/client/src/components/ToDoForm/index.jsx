@@ -5,7 +5,7 @@ import { createTaskAction } from '../../actions';
 import styles from './ToDoForm.module.sass';
 
 function ToDoForm (props) {
-  const { createTask } = props;
+  const { error, createTask } = props;
 
   const initialTaskValues = {
     title: 'Task title ' + String(Math.trunc(Math.random() * 100)),
@@ -23,35 +23,38 @@ function ToDoForm (props) {
   };
 
   return (
-    <Formik initialValues={initialTaskValues} onSubmit={submitHandler}>
-      {formikProps => {
-        return (
-          <Form className={styles.toDoFormContainer}>
-            <div className={styles.toDoFormRow}>
-              <label htmlFor='title'>What to do</label>
-              <Field name='title' style={{ flexGrow: '0.9' }} />
-            </div>
-            <div className={styles.toDoFormRow}>
-              <label htmlFor='date'>When do it</label>
-              <Field name='date' />
-              <label htmlFor='priority'>Priority</label>
-              <Field component='select' name='priority' multiple={false}>
-                <option value='high'>high</option>
-                <option value='normal'>normal</option>
-                <option value='low'>low</option>
-              </Field>
-            </div>
-            <div className={styles.toDoFormRow}>
-              <label htmlFor='description'>Desctiption</label>
-              <Field name='description' style={{ flexGrow: '0.8' }} />
-              <button className={styles.addToDoBtn} type='submit'>
-                Add To List
-              </button>
-            </div>
-          </Form>
-        );
-      }}
-    </Formik>
+    <>
+      <Formik initialValues={initialTaskValues} onSubmit={submitHandler}>
+        {formikProps => {
+          return (
+            <Form className={styles.toDoFormContainer}>
+              <div className={styles.toDoFormRow}>
+                <label htmlFor='title'>What to do</label>
+                <Field name='title' style={{ flexGrow: '0.9' }} />
+              </div>
+              <div className={styles.toDoFormRow}>
+                <label htmlFor='date'>When do it</label>
+                <Field name='date' />
+                <label htmlFor='priority'>Priority</label>
+                <Field component='select' name='priority' multiple={false}>
+                  <option value='high'>high</option>
+                  <option value='normal'>normal</option>
+                  <option value='low'>low</option>
+                </Field>
+              </div>
+              <div className={styles.toDoFormRow}>
+                <label htmlFor='description'>Desctiption</label>
+                <Field name='description' style={{ flexGrow: '0.8' }} />
+                <button className={styles.addToDoBtn} type='submit'>
+                  Add To List
+                </button>
+              </div>
+            </Form>
+          );
+        }}
+      </Formik>
+      {error && <div>ERROR</div>}
+    </>
   );
 }
 

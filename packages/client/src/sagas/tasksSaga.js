@@ -16,11 +16,14 @@ import {
 import * as API from './../api';
 
 export function * getTasksSaga () {
+  //here must get filters from action
   yield put(getTasksRequest());
   try {
     const {
       data: { data: tasks },
     } = yield API.getTasks();
+    // const test = yield API.getTasks();
+    // console.log(`JSON.stringify(test)`, JSON.stringify(test));
 
     yield put(getTasksSuccess(tasks));
   } catch (err) {
@@ -38,6 +41,7 @@ export function * createTaskSaga (action) {
     } = yield API.createTask(task);
     yield put(createTaskSuccess(newTask));
   } catch (err) {
+    console.log(`err from saga`, err);
     yield put(createTaskError(err));
   }
 }
@@ -62,7 +66,9 @@ export function * deleteTaskSaga (action) {
   console.log(`into deleteTaskSaga id=`, id);
   yield put(deleteTaskRequest());
   try {
-    const { data: deletedTask } = yield API.deleteTask(id);
+    const {
+      data: { data: deletedTask },
+    } = yield API.deleteTask(id);
     console.log(`deletedTask from delete saga`, deletedTask);
     yield put(deleteTaskSuccess(deletedTask));
   } catch (err) {

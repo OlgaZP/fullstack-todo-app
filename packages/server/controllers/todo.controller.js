@@ -50,11 +50,11 @@ module.exports.deleteTodo = async (req, res, next) => {
       },
     });
     const deletedTodosCount = await Todo.destroy({ where: { id: todoId } });
-
-    if (deletedTodosCount > 0) {
-      return res.status(200).send(deletedTodo);
+    if (deletedTodosCount) {
+      return res.status(200).send({ data: deletedTodo });
     }
-    res.status(404).send('Phone not found');
+
+    next(createError(404, 'Todo not found'));
   } catch (err) {
     next(err);
   }
@@ -80,7 +80,7 @@ module.exports.updateTodo = async (req, res, next) => {
       ]);
       return res.status(201).send({ data: preparedTodo });
     }
-    next();
+    next(createError(404, 'Todo not found'));
   } catch (err) {
     next(err);
   }

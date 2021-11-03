@@ -59,7 +59,13 @@ function ToDoList (props) {
     );
   };
 
-  return <ul style={{ margin: '0', padding: '0' }}>{tasks.map(mapTask)}</ul>;
+  return (
+    <>
+      {isFetching && <div>Loading...</div>}
+      {error && <div>ERROR</div>}
+      <ul style={{ margin: '0', padding: '0' }}>{tasks.map(mapTask)}</ul>
+    </>
+  );
 }
 
 const mapStateToProps = state => state.tasks;
