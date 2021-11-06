@@ -13,9 +13,9 @@ module.exports.PAGINATION_VALIDATION_SCHEMA = yup.object().shape({
 });
 
 module.exports.NEW_TODO_VALIDATION_SCHEMA = yup.object().shape({
-  title: yup.string().required(),
+  title: yup.string().required('Input ToDo title!'),
   descripition: yup.string(),
-  date: yup.date().required(),
+  date: yup.date().required('Date of ToDo is required'),
   // .default(new Date().toISOString())
   // .min(
   //   new Date(Date.now() - 86400000).toDateString(),

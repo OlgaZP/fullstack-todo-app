@@ -3,13 +3,22 @@ const createError = require('http-errors');
 const { Todo } = require('./../models');
 
 module.exports.getTodos = async (req, res, next) => {
+  const {
+    pagination: { limit, offset },
+  } = req;
+  console.log(`limit from getTodos controller`, limit);
+  console.log(`offset from getTodos controller`, offset);
   try {
     const foundTodos = await Todo.findAll({
       raw: true,
       attributes: {
         exclude: ['createdAt', 'updatedAt'],
       },
+      limit,
+      offset,
     });
+    //проверить для пагинацииюю первая страница - офсет=0 и результат 0б
+    //последняя страница = офсет больше одной тсраницы и результат ноль
     res.status(200).send({ data: foundTodos });
   } catch (err) {
     next(err);

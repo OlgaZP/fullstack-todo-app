@@ -53,7 +53,6 @@ function ToDoForm (props) {
           );
         }}
       </Formik>
-      {error && <div>ERROR</div>}
     </>
   );
 }

@@ -2,8 +2,10 @@ import ACTION_TYPES from './actionTypes';
 
 //creators for get tasks
 //add filters to input parameters
-export const getTasksAction = () => ({
+export const getTasksAction = (filter, pagination) => ({
   type: ACTION_TYPES.GET_TASKS_ACTION,
+  filter,
+  pagination,
 });
 
 export const getTasksRequest = () => ({
@@ -15,9 +17,9 @@ export const getTasksSuccess = tasks => ({
   tasks,
 });
 
-export const getTasksError = err => ({
+export const getTasksError = error => ({
   type: ACTION_TYPES.GET_TASKS_ERROR,
-  err,
+  error,
 });
 
 //creators for create task
@@ -35,9 +37,9 @@ export const createTaskSuccess = task => ({
   task,
 });
 
-export const createTaskError = err => ({
+export const createTaskError = error => ({
   type: ACTION_TYPES.CREATE_TASK_ERROR,
-  err,
+  error,
 });
 //creators for update task
 export const updateTaskAction = (id, taskForUpdate) => ({
@@ -55,9 +57,9 @@ export const updateTaskSuccess = updatedTask => ({
   updatedTask,
 });
 
-export const updateTaskError = err => ({
+export const updateTaskError = error => ({
   type: ACTION_TYPES.UPDATE_TASK_ERROR,
-  err,
+  error,
 });
 
 //creators for delete task
@@ -75,7 +77,7 @@ export const deleteTaskSuccess = deletedTask => ({
   deletedTask,
 });
 
-export const deleteTaskError = err => ({
+export const deleteTaskError = error => ({
   type: ACTION_TYPES.DELETE_TASK_ERROR,
-  err,
+  error,
 });

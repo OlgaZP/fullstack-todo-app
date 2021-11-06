@@ -8,10 +8,16 @@ import ACTION_TYPES from '../../actions/actionTypes';
 import styles from './ToDoList.module.sass';
 
 function ToDoList (props) {
-  const { tasks, isFetching, error, getTasks, deleteTask, updateTask } = props;
+  console.log('props for ToDoList :>> ', props);
+  const {
+    tasks: { tasks, filter, pagination, isFetching, error },
+    getTasks,
+    deleteTask,
+    updateTask,
+  } = props;
 
   useEffect(() => {
-    getTasks();
+    getTasks(filter, pagination);
   }, []);
 
   const cs = classNames.bind(styles);
@@ -62,16 +68,31 @@ function ToDoList (props) {
   return (
     <>
       {isFetching && <div>Loading...</div>}
-      {error && <div>ERROR</div>}
+      {console.log('error from ToDoList:>> ', error)}
+      {error && (
+        <div style={{ fontWeight: 'bold', color: 'red' }}>
+          ERROR: {error?.title}, {error?.details[0]?.type}
+        </div>
+      )}
       <ul style={{ margin: '0', padding: '0' }}>{tasks.map(mapTask)}</ul>
     </>
   );
 }
 
-const mapStateToProps = state => state.tasks;
+const mapStateToProps = state => {
+  console.log('full state from maoStateToProps :>> ', state);
+  console.log('from mapStateToProps tasks:>> ', state.tasks);
+  console.log('from mapStateToProps pagination:>> ', state.pagination);
+  return {
+    tasks: state.tasks,
+    pagination: state.pagination,
+    filter: state.filter,
+  };
+};
 
 const mapDispatchToProps = dispatch => ({
-  getTasks: () => dispatch(actionCreators.getTasksAction()),
+  getTasks: (filter, pagination) =>
+    dispatch(actionCreators.getTasksAction(filter, pagination)),
   deleteTask: id => dispatch(actionCreators.deleteTaskAction(id)),
   updateTask: (id, taskForUpdate) =>
     dispatch(actionCreators.updateTaskAction(id, taskForUpdate)),

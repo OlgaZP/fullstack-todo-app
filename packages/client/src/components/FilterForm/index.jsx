@@ -1,32 +1,47 @@
-import { Formik, Form } from 'formik';
 import React from 'react';
+import { connect } from 'react-redux';
+import { getTasksAction } from '../../actions';
 import styles from './FilterForm.module.sass';
 
-function FilterForm () {
+function FilterForm (props) {
+  const { getTask } = props;
+
   const initialFilter = {
-    priority: 'high',
-    date: new Date().getDate(),
+    priority: '',
   };
 
-  const submitHandler = (values, formikBag) => {
-    console.log('into submit handler :>> ');
-    console.log('values :>> ', values);
-    formikBag.resetForm();
+  const filterHandler = () => {
+    console.log('FilterForm into filterHandler :>> ');
+    alert('filterHandler');
+    // getTask(initialFilter && );
+  };
+
+  const paginationHandler = () => {
+    console.log('FilterForm into paginationHandler :>> ');
+    alert('paginationHandler');
   };
 
   return (
-    <Formik initialValues={initialFilter} onSubmit={submitHandler}>
-      {formikProps => {
-        return (
-          <Form className={styles.filterFormContainer}>
-            <button type='submit'>High</button>
-            <button type='submit'>Normal</button>
-            <button type='submit'>Low</button>
-          </Form>
-        );
-      }}
-    </Formik>
+    <form className={styles.filterFormContainer}>
+      <button onClick={paginationHandler}> Prev Page </button>
+      <button onClick={filterHandler} style={{ backgroundColor: '#EB4886' }}>
+        High
+      </button>
+      <button onClick={filterHandler} style={{ backgroundColor: '#79CBBD' }}>
+        Normal
+      </button>
+      <button onClick={filterHandler} style={{ backgroundColor: '#46C5F3' }}>
+        Low
+      </button>
+      <button onClick={paginationHandler}> Next Page </button>
+    </form>
   );
 }
 
-export default FilterForm;
+const mapDispatchToProps = dispatch => ({
+  getTask: filter => {
+    dispatch(getTasksAction(filter));
+  },
+});
+
+export default connect(null, mapDispatchToProps)(FilterForm);

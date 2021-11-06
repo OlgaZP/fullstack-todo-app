@@ -4,6 +4,13 @@ const initialState = {
   tasks: [],
   isFetching: false,
   error: null,
+  pagination: {
+    page: 1,
+    results: 5,
+  },
+  filter: {
+    priority: 'high',
+  },
 };
 
 function tasksReduser (state = initialState, action) {
@@ -19,12 +26,13 @@ function tasksReduser (state = initialState, action) {
       };
     }
     case ACTION_TYPES.GET_TASKS_SUCCESS: {
-      const { tasks } = action;
+      const { tasks, pagination } = action;
       const newTasks = [...tasks];
       return {
         ...state,
         isFetching: false,
         tasks: newTasks,
+        pagination,
       };
     }
     case ACTION_TYPES.GET_TASKS_ERROR: {
@@ -55,6 +63,7 @@ function tasksReduser (state = initialState, action) {
     }
     case ACTION_TYPES.CREATE_TASK_ERROR: {
       const { error } = action;
+      // console.log(`error from CREATE_TASK_ERROR`, error);
       return {
         ...state,
         isFetching: false,
