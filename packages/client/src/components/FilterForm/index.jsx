@@ -4,22 +4,23 @@ import { getTasksAction } from '../../actions';
 import styles from './FilterForm.module.sass';
 
 function FilterForm (props) {
-  const { getTask } = props;
-
-  const initialFilter = {
-    priority: '',
-  };
+  console.log('props for FilterForm :>> ', props);
+  const { getTask, filter, pagination } = props;
 
   const filterHandler = () => {
     console.log('FilterForm into filterHandler :>> ');
     alert('filterHandler');
-    // getTask(initialFilter && );
+    getTask(filter, pagination);
   };
 
   const paginationHandler = () => {
     console.log('FilterForm into paginationHandler :>> ');
     alert('paginationHandler');
+    getTask(filter, pagination);
   };
+
+  console.log('filter from FilterFormComponent:>> ', filter);
+  console.log('pagination from FilterFormComponent:>> ', pagination);
 
   return (
     <form className={styles.filterFormContainer}>
@@ -38,10 +39,12 @@ function FilterForm (props) {
   );
 }
 
+const mapStateToProps = state => state.tasks;
+
 const mapDispatchToProps = dispatch => ({
-  getTask: filter => {
-    dispatch(getTasksAction(filter));
+  getTask: (filter, pagination) => {
+    dispatch(getTasksAction(filter, pagination));
   },
 });
 
-export default connect(null, mapDispatchToProps)(FilterForm);
+export default connect(mapStateToProps, mapDispatchToProps)(FilterForm);

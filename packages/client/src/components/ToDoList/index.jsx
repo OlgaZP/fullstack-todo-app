@@ -10,7 +10,11 @@ import styles from './ToDoList.module.sass';
 function ToDoList (props) {
   console.log('props for ToDoList :>> ', props);
   const {
-    tasks: { tasks, filter, pagination, isFetching, error },
+    tasks,
+    filter,
+    pagination,
+    isFetching,
+    error,
     getTasks,
     deleteTask,
     updateTask,
@@ -23,6 +27,9 @@ function ToDoList (props) {
   const cs = classNames.bind(styles);
 
   console.log('tasks from ToDoListComponent:>> ', tasks);
+  console.log('filter from ToDoListComponent:>> ', filter);
+  console.log('pagination from ToDoListComponent:>> ', pagination);
+
   const mapTask = ({ id, title, date, description, isDone, priority }) => {
     const deleteHandler = () => {
       console.log('id from delete handler :>> ', id);
@@ -79,16 +86,7 @@ function ToDoList (props) {
   );
 }
 
-const mapStateToProps = state => {
-  console.log('full state from maoStateToProps :>> ', state);
-  console.log('from mapStateToProps tasks:>> ', state.tasks);
-  console.log('from mapStateToProps pagination:>> ', state.pagination);
-  return {
-    tasks: state.tasks,
-    pagination: state.pagination,
-    filter: state.filter,
-  };
-};
+const mapStateToProps = state => state.tasks;
 
 const mapDispatchToProps = dispatch => ({
   getTasks: (filter, pagination) =>
