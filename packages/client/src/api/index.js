@@ -9,7 +9,7 @@ const apiInstance = axios.create(axiosParams);
 //add filter parameters to server request
 export const getTasks = (filter, pagination) =>
   apiInstance.get(
-    `/todo?page=${pagination.page}&results=${pagination.results}`
+    `/todo?page=${pagination.page}&results=${pagination.results}&priority=${filter.priority}`
   );
 
 export const createTask = task => apiInstance.post('/todo', task);

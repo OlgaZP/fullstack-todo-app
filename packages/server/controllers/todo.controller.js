@@ -5,20 +5,22 @@ const { Todo } = require('./../models');
 module.exports.getTodos = async (req, res, next) => {
   const {
     pagination: { limit, offset },
+    priority,
   } = req;
   console.log(`limit from getTodos controller`, limit);
   console.log(`offset from getTodos controller`, offset);
+  console.log(`priority from getTodos controller`, priority);
   try {
     const foundTodos = await Todo.findAll({
       raw: true,
+      where: { priority: priority },
       attributes: {
         exclude: ['createdAt', 'updatedAt'],
       },
       limit,
       offset,
     });
-    //проверить для пагинацииюю первая страница - офсет=0 и результат 0б
-    //последняя страница = офсет больше одной тсраницы и результат ноль
+
     res.status(200).send({ data: foundTodos });
   } catch (err) {
     next(err);

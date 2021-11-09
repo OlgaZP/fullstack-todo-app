@@ -26,13 +26,12 @@ function tasksReduser (state = initialState, action) {
       };
     }
     case ACTION_TYPES.GET_TASKS_SUCCESS: {
-      const { tasks, pagination } = action;
+      const { tasks } = action;
       const newTasks = [...tasks];
       return {
         ...state,
         isFetching: false,
         tasks: newTasks,
-        pagination,
       };
     }
     case ACTION_TYPES.GET_TASKS_ERROR: {
