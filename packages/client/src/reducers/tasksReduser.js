@@ -30,8 +30,8 @@ function tasksReduser (state = initialState, action) {
       console.log(`form GET_TASK_SUCCESS reducer pagination`, pagination);
       console.log(`form GET_TASK_SUCCESS reducer filter`, filter);
       const newTasks = [...tasks];
-      const newPagination = pagination && initialState.pagination;
-      const newFilter = filter && initialState.filter;
+      const newPagination = pagination || initialState.pagination;
+      const newFilter = filter || initialState.filter;
       return {
         ...state,
         isFetching: false,

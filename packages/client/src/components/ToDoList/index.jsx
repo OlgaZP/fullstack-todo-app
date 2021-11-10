@@ -78,7 +78,8 @@ function ToDoList (props) {
       {console.log('error from ToDoList:>> ', error)}
       {error && (
         <div style={{ fontWeight: 'bold', color: 'red' }}>
-          ERROR: {error?.title}, {error?.details[0]?.type}
+          ERROR: {error}
+          {/* {error?.title}, {error?.details[0]?.type} */}
         </div>
       )}
       <ul style={{ margin: '0', padding: '0' }}>{tasks.map(mapTask)}</ul>

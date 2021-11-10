@@ -31,8 +31,12 @@ function FilterForm (props) {
 
   return (
     <form className={styles.filterFormContainer}>
-      <button onClick={paginationHandler}> Prev Page </button>
+      <button type='button' onClick={paginationHandler}>
+        {' '}
+        Prev Page{' '}
+      </button>
       <button
+        type='button'
         value='high'
         onClick={filterHandler}
         style={{ backgroundColor: '#EB4886' }}
@@ -40,6 +44,7 @@ function FilterForm (props) {
         High
       </button>
       <button
+        type='button'
         value='normal'
         onClick={filterHandler}
         style={{ backgroundColor: '#79CBBD' }}
@@ -47,13 +52,17 @@ function FilterForm (props) {
         Normal
       </button>
       <button
+        type='button'
         value='low'
         onClick={filterHandler}
         style={{ backgroundColor: '#46C5F3' }}
       >
         Low
       </button>
-      <button onClick={paginationHandler}> Next Page </button>
+      <button type='button' onClick={paginationHandler}>
+        {' '}
+        Next Page{' '}
+      </button>
     </form>
   );
 }
