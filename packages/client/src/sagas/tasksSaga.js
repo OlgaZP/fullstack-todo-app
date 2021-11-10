@@ -18,8 +18,8 @@ import * as API from './../api';
 export function * getTasksSaga (actions) {
   //here must get filters from action
   const { filter, pagination } = actions;
-  console.log(`filter from getTasksSaga`, filter);
-  console.log(`pagination from getTasksSaga`, pagination);
+  // console.log(`filter from getTasksSaga`, filter);
+  // console.log(`pagination from getTasksSaga`, pagination);
   yield put(getTasksRequest());
   try {
     const {

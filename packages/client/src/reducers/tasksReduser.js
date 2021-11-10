@@ -9,7 +9,7 @@ const initialState = {
     results: 5,
   },
   filter: {
-    priority: 'high',
+    priority: 'all',
   },
 };
 

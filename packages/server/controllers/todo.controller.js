@@ -7,19 +7,24 @@ module.exports.getTodos = async (req, res, next) => {
     pagination: { limit, offset },
     priority,
   } = req;
-  console.log(`limit from getTodos controller`, limit);
-  console.log(`offset from getTodos controller`, offset);
-  console.log(`priority from getTodos controller`, priority);
+  // console.log(`limit from getTodos controller`, limit);
+  // console.log(`offset from getTodos controller`, offset);
+  // console.log(`priority from getTodos controller`, priority);
   try {
-    const foundTodos = await Todo.findAll({
+    const queryObject = {
       raw: true,
-      where: { priority: priority },
       attributes: {
         exclude: ['createdAt', 'updatedAt'],
       },
       limit,
       offset,
-    });
+    };
+
+    if (priority !== 'all') {
+      queryObject.where = { priority: priority };
+    }
+
+    const foundTodos = await Todo.findAll(queryObject);
 
     res.status(200).send({ data: foundTodos });
   } catch (err) {

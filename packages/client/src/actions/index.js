@@ -1,7 +1,6 @@
 import ACTION_TYPES from './actionTypes';
 
 //creators for get tasks
-//add filters to input parameters
 export const getTasksAction = (filter, pagination) => ({
   type: ACTION_TYPES.GET_TASKS_ACTION,
   filter,
