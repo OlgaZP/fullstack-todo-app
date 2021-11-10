@@ -25,7 +25,7 @@ export function * getTasksSaga (actions) {
     const {
       data: { data: tasks },
     } = yield API.getTasks(filter, pagination);
-    yield put(getTasksSuccess(tasks));
+    yield put(getTasksSuccess(tasks, filter, pagination));
   } catch (err) {
     yield put(getTasksError(err));
   }

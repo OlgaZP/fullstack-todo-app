@@ -12,9 +12,11 @@ export const getTasksRequest = () => ({
   type: ACTION_TYPES.GET_TASKS_REQUEST,
 });
 
-export const getTasksSuccess = tasks => ({
+export const getTasksSuccess = (tasks, filter, pagination) => ({
   type: ACTION_TYPES.GET_TASKS_SUCCESS,
   tasks,
+  filter,
+  pagination,
 });
 
 export const getTasksError = error => ({

@@ -1,4 +1,5 @@
 import React from 'react';
+import { useState } from 'react';
 import { connect } from 'react-redux';
 import { getTasksAction } from '../../actions';
 import styles from './FilterForm.module.sass';
@@ -9,7 +10,7 @@ function FilterForm (props) {
 
   const filterHandler = e => {
     console.log('FilterForm into filterHandler :>> ', e.target.value);
-    alert(`filterHandler ${e.target.value}`);
+    alert(`filterHandler`);
     getTask({ priority: e.target.value }, pagination);
   };
 

@@ -26,12 +26,18 @@ function tasksReduser (state = initialState, action) {
       };
     }
     case ACTION_TYPES.GET_TASKS_SUCCESS: {
-      const { tasks } = action;
+      const { tasks, filter, pagination } = action;
+      console.log(`form GET_TASK_SUCCESS reducer pagination`, pagination);
+      console.log(`form GET_TASK_SUCCESS reducer filter`, filter);
       const newTasks = [...tasks];
+      const newPagination = pagination && initialState.pagination;
+      const newFilter = filter && initialState.filter;
       return {
         ...state,
         isFetching: false,
         tasks: newTasks,
+        pagination: newPagination,
+        filter: newFilter,
       };
     }
     case ACTION_TYPES.GET_TASKS_ERROR: {
