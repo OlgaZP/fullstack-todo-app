@@ -7,9 +7,6 @@ module.exports.paginateToDos = async (req, res, next) => {
   const {
     query: { page, results, priority },
   } = req;
-  // console.log(`page from middleware`, page);
-  // console.log(`result from middleware`, results);
-  // console.log(`priority from middleware`, priority);
 
   const defaultPagination = { limit: 5, offset: 0 };
 
@@ -20,7 +17,6 @@ module.exports.paginateToDos = async (req, res, next) => {
 
   try {
     req.priority = priority;
-    // console.log(`pagination`, pagination);
     if (await PAGINATION_VALIDATION_SCHEMA.isValid(pagination)) {
       req.pagination = pagination;
     } else {

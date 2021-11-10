@@ -4,31 +4,25 @@ import { getTasksAction } from '../../actions';
 import styles from './FilterForm.module.sass';
 
 function FilterForm (props) {
-  // console.log('props for FilterForm :>> ', props);
   const { getTask, filter, pagination } = props;
 
   const filterHandler = e => {
-    // console.log('FilterForm into filterHandler :>> ', e.target.value);
-    // alert(`filterHandler`);
-    getTask({ priority: e.target.value }, pagination);
+    const {
+      target: { value },
+    } = e;
+    getTask({ priority: value }, pagination);
   };
 
   const paginationHandler = e => {
-    // console.log('FilterForm into paginationHandler :>> ');
-
-    // console.log('filter from PaginationHandler:>> ', filter);
-    // console.log('pagination from PaginationHandler:>> ', pagination);
-    // const { page, results } = pagination;
-
+    const {
+      target: { value },
+    } = e;
     const newPage = { ...pagination };
-    e.target.value === 'next' ? newPage.page++ : newPage.page--;
-    // console.log('newPage :>> ', newPage);
-    // alert(`paginationHandler ${newPage.page}`);
+
+    value === 'next' ? newPage.page++ : newPage.page--;
+
     getTask(filter, newPage);
   };
-
-  // console.log('filter from FilterFormComponent:>> ', filter);
-  // console.log('pagination from FilterFormComponent:>> ', pagination);
 
   return (
     <div className={styles.filterFormContainer}>

@@ -8,7 +8,6 @@ import ACTION_TYPES from '../../actions/actionTypes';
 import styles from './ToDoList.module.sass';
 
 function ToDoList (props) {
-  console.log('props for ToDoList :>> ', props);
   const {
     tasks,
     filter,
@@ -26,18 +25,12 @@ function ToDoList (props) {
 
   const cs = classNames.bind(styles);
 
-  console.log('tasks from ToDoListComponent:>> ', tasks);
-  console.log('filter from ToDoListComponent:>> ', filter);
-  console.log('pagination from ToDoListComponent:>> ', pagination);
-
   const mapTask = ({ id, title, date, description, isDone, priority }) => {
     const deleteHandler = () => {
-      console.log('id from delete handler :>> ', id);
       deleteTask(id);
     };
 
     const changeDoneStatusHandler = () => {
-      console.log('change done status :>> ');
       updateTask(id, { isDone: !isDone });
     };
 
@@ -75,7 +68,6 @@ function ToDoList (props) {
   return (
     <>
       {isFetching && <div>Loading...</div>}
-      {console.log('error from ToDoList:>> ', error)}
       {error && (
         <div style={{ fontWeight: 'bold', color: 'red' }}>
           ERROR: {error}

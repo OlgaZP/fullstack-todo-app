@@ -7,9 +7,7 @@ module.exports.getTodos = async (req, res, next) => {
     pagination: { limit, offset },
     priority,
   } = req;
-  // console.log(`limit from getTodos controller`, limit);
-  // console.log(`offset from getTodos controller`, offset);
-  // console.log(`priority from getTodos controller`, priority);
+
   try {
     const queryObject = {
       raw: true,
